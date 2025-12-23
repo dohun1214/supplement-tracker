@@ -216,7 +216,7 @@ export default function App() {
       <StatusBar style="auto" />
       <ScrollView style={styles.scrollView}>
         <View style={styles.mainContent}>
-          <Text style={styles.title}>건강 체크</Text>
+          <Text style={styles.title}>Supplement Tracker</Text>
 
           {/* 항목 선택 탭 */}
           <ScrollView
