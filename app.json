@@ -23,7 +23,15 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "건강 체크",
+      "shortName": "건강체크",
+      "description": "매일 건강 보조제 섭취를 체크하는 앱",
+      "themeColor": "#2196F3",
+      "backgroundColor": "#f5f5f5",
+      "display": "standalone",
+      "startUrl": "/",
+      "scope": "/"
     }
   }
 }
