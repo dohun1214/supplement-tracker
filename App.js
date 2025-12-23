@@ -227,17 +227,25 @@ export default function App() {
             contentContainerStyle={styles.tabsContent}
           >
             {items.map(item => (
-              <TouchableOpacity
-                key={item.id}
-                style={[styles.tab, selectedItem.id === item.id && styles.tabActive]}
-                onPress={() => setSelectedItem(item)}
-                onLongPress={() => deleteItem(item.id)}
-              >
-                <Text style={styles.tabEmoji}>{item.emoji}</Text>
-                <Text style={[styles.tabText, selectedItem.id === item.id && styles.tabTextActive]}>
-                  {item.name}
-                </Text>
-              </TouchableOpacity>
+              <View key={item.id} style={styles.tabWrapper}>
+                <TouchableOpacity
+                  style={[styles.tab, selectedItem.id === item.id && styles.tabActive]}
+                  onPress={() => setSelectedItem(item)}
+                >
+                  <Text style={styles.tabEmoji}>{item.emoji}</Text>
+                  <Text style={[styles.tabText, selectedItem.id === item.id && styles.tabTextActive]}>
+                    {item.name}
+                  </Text>
+                </TouchableOpacity>
+                {items.length > 1 && (
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={() => deleteItem(item.id)}
+                  >
+                    <Text style={styles.deleteButtonText}>×</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
             ))}
             <TouchableOpacity
               style={styles.addTabButton}
@@ -396,14 +404,18 @@ const styles = StyleSheet.create({
   tabsContent: {
     paddingRight: 10,
   },
+  tabWrapper: {
+    position: 'relative',
+    marginRight: 10,
+  },
   tab: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 16,
+    paddingRight: 32,
     borderRadius: 20,
-    marginRight: 10,
     borderWidth: 2,
     borderColor: 'transparent',
   },
@@ -422,6 +434,23 @@ const styles = StyleSheet.create({
   tabTextActive: {
     color: '#2196F3',
     fontWeight: 'bold',
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    backgroundColor: '#F44336',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  deleteButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    lineHeight: 18,
   },
   addTabButton: {
     backgroundColor: '#E0E0E0',
