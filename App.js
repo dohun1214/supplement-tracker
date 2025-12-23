@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, TextInput, Modal, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar } from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -212,8 +212,9 @@ export default function App() {
   if (!selectedItem) return null;
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-      <StatusBar style="auto" />
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+        <StatusBar style="auto" />
       <ScrollView style={styles.scrollView}>
         <View style={styles.mainContent}>
           <Text style={styles.title}>Supplement Tracker</Text>
@@ -363,7 +364,8 @@ export default function App() {
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
